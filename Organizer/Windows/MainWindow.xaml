@@ -1,0 +1,44 @@
+﻿<Controls:MetroWindow x:Class="Organizer.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:Organizer.Windows"
+        mc:Ignorable="d"
+        TitleCaps="False"
+        Title="organizer" Height="600" Width="1100" GlowBrush="Cyan" BorderBrush="Cyan">
+    <Grid>
+        <Label Content="directory name: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="DirectoryTextBox" Height="28" Margin="110,10,45,0" TextWrapping="NoWrap" VerticalAlignment="Top" VerticalContentAlignment="Center" IsReadOnly="True" CharacterCasing="Lower"/>
+        <Button x:Name="DirectorySelectionButton" Style="{DynamicResource SquareButtonStyle}" Content="..." HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="30" Click="DirectorySelectionButton_Click"/>
+        <ListBox x:Name="ExtensionListBox" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="300" Margin="10,45,0,30" BorderBrush="#FF0041FF" Background="#FF1E1E1E" Foreground="White" IsEnabled="{Binding IsChecked, ElementName=FileExtensionsCheckBox}">
+            <ListBox.Resources>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+            </ListBox.Resources>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="AddMenuItem" Header="Add" Click="AddMenuItem_Click"/>
+                    <MenuItem x:Name="RemoveMenuItem" Header="Remove" Click="RemoveMenuItem_Click"/>
+                    <MenuItem x:Name="ClearMenuItem" Header="Clear" Click="ClearMenuItem_Click"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+        <CheckBox Content="file extensions" IsChecked="True" x:Name="FileExtensionsCheckBox" HorizontalAlignment="Left" Margin="115,0,0,10" VerticalAlignment="Bottom"/>
+        <GroupBox Header="Options" HorizontalAlignment="Stretch" Margin="315,45,5,40" VerticalAlignment="Stretch" FlowDirection="RightToLeft" BorderBrush="White" Background="Cyan">
+            <Grid FlowDirection="LeftToRight">
+                <CheckBox x:Name="AddPrefixCheckBox" Content="add prefix" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="AddSuffixCheckBox" Content="add suffix" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+                <Label Content="starting index: " HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="ResetIndexCheckBox" Content="reset index per extension" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" IsEnabled="{Binding IsChecked, ElementName=FileExtensionsCheckBox}"/>
+                <TextBox x:Name="PrefixTextBox" HorizontalAlignment="Stretch" Height="23" Margin="220,10,5,0" TextWrapping="NoWrap" VerticalAlignment="Top" BorderBrush="White" IsEnabled="{Binding IsChecked, ElementName=AddPrefixCheckBox}"/>
+                <TextBox x:Name="SuffixTextBox" HorizontalAlignment="Stretch" Height="23" Margin="220,40,5,0" TextWrapping="NoWrap" VerticalAlignment="Top" BorderBrush="White" IsEnabled="{Binding IsChecked, ElementName=AddSuffixCheckBox}"/>
+                <Controls:NumericUpDown x:Name="StartingIndexNumericUpDown" Value="0" TextAlignment="Left" Margin="220,70,5,0" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                <Label Content="v.1.0.0.0" HorizontalAlignment="Right" Margin="0,0,5,5" VerticalAlignment="Bottom" FontFamily="Consolas"/>
+                <Label Content="created by ryukuo" HorizontalAlignment="Left" Margin="5,0,0,5" VerticalAlignment="Bottom" FontFamily="Consolas"/>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="OrganizeButton" Style="{DynamicResource SquareButtonStyle}" Content="Organize Files" HorizontalAlignment="Right" Margin="0,0,5,5" VerticalAlignment="Bottom" Width="175" Click="OrganizeButton_Click"/>
+
+    </Grid>
+</Controls:MetroWindow>
